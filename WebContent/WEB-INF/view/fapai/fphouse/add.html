@@ -1,0 +1,54 @@
+
+<!-- BEGIN PAGE CONTAINER-->
+<div class="container-fluid">
+
+	<!-- BEGIN PAGE HEADER-->
+	<div class="row-fluid">
+		<div class="span12">
+			<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+			<ul class="breadcrumb">
+				<li><a href="javascript:void(0)" onclick="common_ajax.ajaxMainPanel('/platform/index/content');">主页</a> <span class="divider">/</span></li>
+				<li><a href="javascript:void(0)" onclick="common_ajax.ajaxMainPanel('/fapai/fphouse');">法拍房管理</a> <span class="divider">/</span></li>
+				<li class="active">添加</li>
+			</ul>
+			<!-- END PAGE TITLE & BREADCRUMB-->
+		</div>
+	</div>
+	<!-- END PAGE HEADER-->
+
+	<!-- BEGIN PAGE CONTENT-->
+	<div class="row-fluid">
+		<div class="span12">
+			<!-- BEGIN VALIDATION STATES-->
+			<div class="widget red">
+				<div class="widget-title">
+					<h4>
+						<i class=" icon-key"></i> 添加
+					</h4>
+				</div>
+				<div class="widget-body form">
+
+					<form id="editForm" action="${cxt!}/fapai/fphouse/save" method="POST" class="form-horizontal">
+
+						
+						<% include("/fapai/fphouse/form.html"){} %>
+						<div class="control-group">
+							<div class="controls">
+								
+								<button type="button" class="btn btn-success" onclick="manager_fphouse_form.submitValiFunc(this.form, true);">
+									<i class="icon-ok icon-white"></i>提交
+								</button>
+								
+							</div>
+						</div>
+
+					</form>
+
+				</div>
+			</div>
+			<!-- END VALIDATION STATES-->
+		</div>
+	</div>
+
+	<!-- END PAGE CONTAINER-->
+</div>

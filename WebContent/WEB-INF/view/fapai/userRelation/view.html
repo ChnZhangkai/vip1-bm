@@ -1,0 +1,101 @@
+
+<!-- BEGIN PAGE CONTAINER-->
+<div class="container-fluid">
+
+	<!-- BEGIN PAGE HEADER-->
+	<div class="row-fluid">
+		<div class="span12">
+			<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+			<ul class="breadcrumb">
+				<li><a href="javascript:void(0)" onclick="common_ajax.ajaxMainPanel('/platform/index/content');">主页</a> <span class="divider">/</span></li>
+				<li><a href="#">xxx</a> <span class="divider">/</span></li>
+				<li class="active">查看</li>
+			</ul>
+			<!-- END PAGE TITLE & BREADCRUMB-->
+		</div>
+	</div>
+	<!-- END PAGE HEADER-->
+
+	<!-- BEGIN PAGE CONTENT-->
+	<div class="row-fluid">
+		<div class="span12">
+			<!-- BEGIN VALIDATION STATES-->
+			<div class="widget red">
+				<div class="widget-title">
+					<h4>
+						<i class=" icon-key"></i> 查看
+					</h4>
+				</div>
+				<div class="widget-body form">	
+			
+					<form role="form" class="form-horizontal">
+						
+						<div class="control-group">
+							<label class="control-label"></label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${userRelation.iduser_spread_relation}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">推荐者的userid</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${userRelation.spreader_userid}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">推荐者的openid</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${userRelation.spreader_openid}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">加入者的userid</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${userRelation.joiner_userid}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">加入者的openid</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${userRelation.joiner_openid}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">推荐关系事件原始值</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${userRelation.change_event_msg}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">获取关系变化的途径
+subscribe - 用户关注时获取推荐关系
+dialog_input - 用户在公众号对话框输入</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${userRelation.change_method}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">获取关系变化时间</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${userRelation.change_time}">
+							</div>
+						</div>
+						
+						
+					</form>
+			
+				</div>
+			</div>
+			<!-- END VALIDATION STATES-->
+		</div>
+	</div>
+
+	<!-- END PAGE CONTAINER-->
+</div>

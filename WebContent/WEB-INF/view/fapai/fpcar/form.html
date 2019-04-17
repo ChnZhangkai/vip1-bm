@@ -1,0 +1,278 @@
+<link rel="stylesheet" href="${cxt!}/jsfile/webuploader/webuploader.css" type="text/css">
+<script type="text/javascript" charset="utf-8" src="${cxt!}/jsfile/regionData.js"></script>
+<script type="text/javascript" charset="utf-8" src="${cxt!}/jsfile/region_init.js"></script>
+<script type="text/javascript" charset="utf-8" src="${cxt!}/jsfile/webuploader/webuploader.js"></script>
+<script type="text/javascript">
+<% if(!isEmpty(fpcar.car_province_id)){%>
+region_init("select_province","select_city","select_area",${fpcar.car_province_id},${fpcar.car_city_id},${fpcar.car_region_id});
+<% }else{%>
+region_init("select_province","select_city","select_area")
+<%} %>
+/**
+ *删除图片
+ */
+function delimg(obj,fileId) {
+	$('#isupdateImge').val("true");
+	$(obj).parent().remove();
+}
+</script>
+						<div class="control-group">
+							<label class="control-label">标题:</label>
+							<div class="controls">
+								<input type="hidden" name="fpcar.is_delete" value="${fpcar.is_delete!}"/>
+								<input type="text" name="fpcar.car_title" class="span9"  value="${fpcar.car_title!}" maxlength="100" vMin="2" vType="length" onblur="platform_verify.onblurVali(this);" placeholder="2-100位任意字符">
+							<span class="help-inline"> </span>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">属性:</label>
+							<div class="controls">
+								<select name="fpcar.car_nature" class="span2" class="combox" >
+									<option value=1 ${fpcar.car_nature! == 1 ? "selected='selected'":"" }>非运营</option>
+									<option value=2 ${fpcar.car_nature! == 2 ? "selected='selected'":"" }>运营</option>
+									<option value=3 ${fpcar.car_nature! == 3 ? "selected='selected'":"" }>其他</option>
+								</select>	
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">拍卖状态</label>
+							<div class="controls">
+								<select name="fpcar.auction_state" class="span2" class="combox" >
+									<option value="一拍" ${fpcar.auction_state! == "一拍" ? "selected='selected'":"" }>一拍</option>
+									<option value="二拍" ${fpcar.auction_state! == "二拍" ? "selected='selected'":"" }>二拍</option>
+								</select>	
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">当前价:</label>
+							<div class="controls">
+								<input type="text" class="span3" name="fpcar.current_price" value="${fpcar.current_price!}" maxlength="20" vMin="1" vType="numberZ" onblur="platform_verify.onblurVali(this);" placeholder="金额(整数)">
+								<span class="help-inline"></span>
+								<span class="help-inline">元</span>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">法院评估价:</label>
+							<div class="controls">
+								<input type="text" class="span3" name="fpcar.court_price" value="${fpcar.court_price!}" maxlength="20" vMin="1" vType="numberZ" onblur="platform_verify.onblurVali(this);" placeholder="金额(整数)">
+								<span class="help-inline"></span>
+								<span class="help-inline">元</span>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">市场评估价:</label>
+							<div class="controls">
+								<input type="text" class="span3" name="fpcar.market_price" value="${fpcar.market_price!}" maxlength="20" vMin="1" vType="numberZ" onblur="platform_verify.onblurVali(this);" placeholder="金额(整数)">
+								<span class="help-inline"></span>
+								<span class="help-inline">元</span>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">图片：</label>
+							<div class="controls">
+									<!--dom结构部分-->
+									<div id="uploader-demo">
+									    <!--用来存放item-->
+									    <div id="fileList" class="uploader-list">
+									     <input type="hidden"  id="isupdateImge"  name="isupdateImge" value="false" />
+									    <% if(!isEmpty(fileList)){ for(file in fileList){ %>
+									    <div id="WU_FILE"   class="file-item thumbnail upload-state-done">
+									    <a href="javascript:void(0);" onclick="delimg(this)" style="float:right;position: absolute;top: 0;right: 2px;background: #ffffff;border-radius: 0px;line-height: 20px;width: 20px;border-radius: 10px;text-align: center;">X</a>
+									    <img class="headerImg" style="max-width:144px;max-height:108px;width:144px;height:108px" src="${piccontext!}/${file.pic_url!}">
+									    <div class="info" style="width:144px">
+									    <input type="hidden" class="fileids"  style="width:62px" name="fileids" value="${file.fileid!}" />
+									    <label >排序：</label>
+									    <input type="text" style="width:83px" name="fileindex" value="${file.pic_order!}">
+									    </div></div>
+										 <%}}%>
+									    </div>
+									   
+									</div>
+								
+							</div>
+						</div>
+						<div class="control-group">
+						<label class="control-label"></label>
+							<div class="controls">
+						 <div id="filePicker">选择图片</div>
+						 <span class="help-inline">推荐尺寸：1440*1080 </span>
+						 </div>
+						 </div>
+						<div class="control-group">
+							<label class="control-label">位置：</label>
+							<div class="controls">
+								<select id="select_province"  class="span2" name="fpcar.car_province_id" ></select>
+							
+								<select id="select_city"  class="span2" name="fpcar.car_city_id" ></select>
+							
+								<select id="select_area" style="display: none"  class="span2" name="car_region_id" ></select>
+								
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">拍卖开始时间</label>
+							<div class="controls">
+								<input type="text" class="span5" name="fpcar.auction_start_time" id="auction_start_time" readonly="readonly" maxlength="20" vMin="1" vType="length" onblur="platform_verify.onblurVali(this);" placeholder="必选" value='${fpcar.auction_start_time!, dateFormat="yyyy-MM-dd HH:mm:ss"}' 
+								onClick="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss', minDate:'1900-01-01'})">
+								<span class="help-inline"> </span>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">拍卖结束时间</label>
+							<div class="controls">
+								<input type="text" class="span5" name="fpcar.auction_end_time" id="auction_end_time" readonly="readonly" maxlength="20" vMin="1" vType="length"  onblur="platform_verify.onblurVali(this);" placeholder="必选" value='${fpcar.auction_end_time!, dateFormat="yyyy-MM-dd HH:mm:ss"}' 
+								onClick="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss', minDate:'1900-01-01'})">
+								<span class="help-inline"> </span>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">车辆初次登记日期</label>
+							<div class="controls">
+								<input type="text" class="span5" name="fpcar.car_first_reg_time" id="car_first_reg_time" readonly="readonly" maxlength="20" vMin="1" vType="length"  onblur="platform_verify.onblurVali(this);" placeholder="必选" value='${fpcar.car_first_reg_time!, dateFormat="yyyy-MM-dd "}' 
+								onClick="WdatePicker({dateFmt: 'yyyy-MM-dd ', minDate:'1900-01-01'})">
+								<span class="help-inline"> </span>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">车辆类型:</label>
+							<div class="controls">
+			
+								<input type="text" name="fpcar.car_type" class="span3"  value="${fpcar.car_type!}" maxlength="20" vMin="1" vType="length" onblur="platform_verify.onblurVali(this);" placeholder="必填">
+							<span class="help-inline"> </span>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">发动机号:</label>
+							<div class="controls">
+			
+								<input type="text" name="fpcar.engine_num" class="span3"  value="${fpcar.engine_num!}" maxlength="20" vMin="1" vType="length" onblur="platform_verify.onblurVali(this);" placeholder="必填">
+							<span class="help-inline"> </span>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">里程数:</label>
+							<div class="controls">
+			
+								<input type="text" name="fpcar.mileage" class="span3"  value="${fpcar.mileage!}" maxlength="20" vMin="0" vType="numberZ" onblur="platform_verify.onblurVali(this);" placeholder="">
+							<span class="help-inline"></span>
+							<span class="help-inline">KM</span>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">颜色:</label>
+							<div class="controls">
+			
+								<input type="text" name="fpcar.color" class="span3"  value="${fpcar.color!}" maxlength="20" vMin="0" vType="length" onblur="platform_verify.onblurVali(this);" placeholder="">
+							<span class="help-inline"> </span>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">品牌:</label>
+							<div class="controls">
+			
+								<input type="text" name="fpcar.brand_models" class="span3"  value="${fpcar.brand_models!}" maxlength="20" vMin="0" vType="length" onblur="platform_verify.onblurVali(this);" placeholder="">
+							<span class="help-inline"> </span>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">违章记录:</label>
+							<div class="controls">
+			
+								<input type="text" name="fpcar.violation_records" class="span3"  value="${fpcar.violation_records!}" maxlength="50" vMin="0" vType="length" onblur="platform_verify.onblurVali(this);" placeholder="">
+							<span class="help-inline"> </span>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">鉴定报告价格:</label>
+							<div class="controls">
+			
+								<input type="text" name="fpcar.appraisal_report_price" class="span3"  value="${fpcar.appraisal_report_price!}" maxlength="20" vMin="0" vType="numberZ" onblur="platform_verify.onblurVali(this);" placeholder="">
+							<span class="help-inline"> </span>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">详细介绍:</label>
+							<div class="controls">
+			
+								<input type="text" name="fpcar.detail_desc" class="span9"  value="${fpcar.detail_desc!}" maxlength="200" vMin="0" vType="length" onblur="platform_verify.onblurVali(this);" placeholder="">
+							<span class="help-inline"> </span>
+							</div>
+						</div>
+						<!-- <div class="control-group">
+							<label class="control-label">税费:</label>
+							<div class="controls">
+			
+								<input type="text" name="fpcar.tax" class="span3"  value="${fpcar.tax!}" maxlength="20" vMin="0" vType="money" onblur="platform_verify.onblurVali(this);" placeholder="">
+							<span class="help-inline"> </span>
+							</div>
+						</div> -->
+						<div class="control-group">
+							<label class="control-label">法院公告</label>
+							<div class="controls">
+								<textarea id="dt" class="span9" cols="50" rows="30" name="fpcar.auction_announce">${fpcar.auction_announce!}</textarea><br />
+								<span class="help-inline"> </span>
+							</div>
+						</div>
+						
+		<script type="text/javascript" charset="utf-8" src="${cxt!}/jsfile/webuploader/index.js"></script>				
+		<script type="text/javascript">
+	jQuery(document).ready(function() {
+		
+	});
+	
+	/**
+	 * 添加和编辑页面js
+	 */
+	var manager_fpcar_form = function() {
+		"use strict";
+		
+		/**
+		 *验证手机号是否存在
+		 * @param mailBox
+		 */
+		/* var valiMobile = function(mobile, userInfoIds){
+			var param = {"mobile" : mobile, "userInfoIds" : userInfoIds};
+			var result = common_ajax.ajaxFunc("/platform/user/valiMobile", param);
+			return result;
+		} */
+		
+		var dataVali = function (form, isAdd){
+			//设置图片id，提交到后台
+			 var goodsImgs = $("#fileList").find("img");
+			 if(goodsImgs==null || goodsImgs.length<1){
+				 common_modals.alert("请上传商品图片!！");
+				 return false;
+			 }
+			 if($("#fileList").find(".error").size()>0){
+				 common_modals.alert("有图片上传失败，请删除重试！");
+				 return false;
+			 }
+			if(isAdd){ // 添加
+				
+				
+			
+			}else{ // 更新
+	
+			}
+			var errorCount = platform_verify.formVali(form);
+			if(errorCount != 0){
+				common_modals.alert("有" + errorCount + "处错误，请修正！");
+		 		return false;
+			}
+			
+	        
+			common_ajax.ajaxFormMainPanel("editForm");
+		}
+	
+		return {
+			submitValiFunc: dataVali
+		};
+		
+	}();
+
+</script>

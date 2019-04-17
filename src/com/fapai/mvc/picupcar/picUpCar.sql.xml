@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sql-statement namespace="fapai.picUpCar">
+	
+	<!-- 分页查询：from -->
+	<sql id="splitPageFrom">
+		<![CDATA[ 
+        	from 
+        		pic_up_car
+			
+			where 1=1 
+				
+    	]]>
+	</sql>
+	<sql id="selectAll">
+		<![CDATA[ 
+        	select * from 
+        		pic_up_car 
+			where 1=1 
+			and is_delete = 0
+			and  id_car = ?
+			
+    	]]>
+	</sql>
+	<sql id="deleteById">
+		<![CDATA[ 
+        	delete from
+        		pic_up_car
+			where 
+		  id_car = ?
+    	]]>
+	</sql>
+</sql-statement>

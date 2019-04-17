@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<!-- BEGIN HEAD -->
+<head>
+<meta charset="UTF-8" />
+<title>登录</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<meta content="" name="description" />
+<meta content="" name="author" />
+<link rel="stylesheet" href="${cxt!}/ui/metrolab/assets/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="${cxt!}/ui/metrolab/assets/bootstrap/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="${cxt!}/ui/metrolab/assets/font-awesome/css/font-awesome.css" />
+<link rel="stylesheet" href="${cxt!}/ui/metrolab/css/style.css" />
+<link rel="stylesheet" href="${cxt!}/ui/metrolab/css/style-responsive.css" />
+<link rel="stylesheet" href="${cxt!}/ui/metrolab/css/style-default.css" id="style_color" />
+
+<!-- start: artdialog -->
+<link rel="stylesheet" href="${cxt!}/jsfile/artdialog/css/ui-dialog.css" type="text/css"/>
+<!-- end: artdialog -->
+
+<script type="text/javascript" src="${cxt!}/jsfile/jquery/jquery-1.12.4.min.js"></script>
+
+<!-- jsencrypt -->
+<script type="text/javascript" src="${cxt!}/jsfile/jsencrypt.min.js" charset="utf-8"></script>
+
+<script type="text/javascript" src="${cxt!}/jsfile/artdialog/dist/dialog-min.js"></script>
+<script type="text/javascript" src="${cxt!}/jsfile/metrolab/common/modals.js"></script>
+
+<!-- start: common js -->
+<script type="text/javascript">
+	var cxt = "${cxt!}";
+	var localePram = "${localePram!}";
+</script>
+<!-- end: common js -->
+
+</head>
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+<body class="lock">
+
+	<div class="lock-header">
+		<!-- BEGIN LOGO -->
+		<a class="center" id="logo" href="${cxt!}/platform/index"> 
+			manager
+			<% /** %>
+			<img class="center" alt="logo" src="${cxt!}/ui/metrolab/img/logo.png">
+			<% **/ %>
+		</a>
+		<!-- END LOGO -->
+	</div>
+
+	<form id="loginForm" action="${cxt!}/platform/login/vali" method="post">
+
+		<div class="login-wrap">
+			<div class="metro single-size red">
+				<div class="locked">
+					<i class="icon-lock"></i> <span>后台登录</span>
+				</div>
+			</div>
+
+			<div class="metro double-size green">
+				<div class="input-append lock-input">
+					<input type="text" placeholder="账号" id="login_username"
+						name="username" value="${cookieMap.userName.value!}">
+				</div>
+			</div>
+			<div class="metro double-size yellow">
+				<div class="input-append lock-input">
+					<input type="password" placeholder="密码" id="login_password"
+						name="password">
+				</div>
+			</div>
+			<div class="metro double-size navy-blue">
+				<div class="input-append lock-input">
+					<input type="text" id="login_authCode" name="authCode"
+						placeholder="验证码">
+				</div>
+			</div>
+			<div class="metro double-size purple">
+				<div class="input-append lock-input">
+					<a href="javascript:void(0)" id="login_authCodeHref"
+						onclick="showImage(this,'${cxt!}');">${i18nMap["admin.login.clickAuthCode"]}</a>
+						
+				</div>
+			</div>
+			<div class="metro single-size terques login">
+				<button type="button" onclick="submitFunc();" class="btn login-btn">
+					提交 <i class=" icon-long-arrow-right"></i>
+				</button>
+			</div>
+
+			<% /** %>
+			<div class="metro double-size navy-blue ">
+				<a href="index.html" class="social-link"> <i
+					class="icon-facebook-sign"></i> <span>Facebook Login</span>
+				</a>
+			</div>
+			<div class="metro single-size deep-red">
+				<a href="index.html" class="social-link"> <i
+					class="icon-google-plus-sign"></i> <span>Google Login</span>
+				</a>
+			</div>
+			<div class="metro double-size blue">
+				<a href="index.html" class="social-link"> <i
+					class="icon-twitter-sign"></i> <span>Twitter Login</span>
+				</a>
+			</div>
+			<div class="metro single-size purple">
+				<a href="index.html" class="social-link"> <i class="icon-skype"></i>
+					<span>Skype Login</span>
+				</a>
+			</div>
+			<% **/ %>
+
+			<div class="login-footer">
+				<div class="remember-hint pull-left">
+					<input type="checkbox" id="remember" name="remember" value="1">
+					记住我
+				</div>
+				<div class="forgot-hint pull-right">
+					<a id="forget-password" class="" href="javascript:;">忘记密码？</a>
+				</div>
+			</div>
+		</div>
+
+	</form>
+
+	<script type="text/javascript" src="${cxt!}/jsfile/login/login.js"></script>
+	<script type="text/javascript">
+	showImage($("#login_authCodeHref"),'${cxt!}');
+	</script>
+
+</body>
+<!-- END BODY -->
+</html>

@@ -1,0 +1,389 @@
+
+<!-- BEGIN PAGE CONTAINER-->
+<div class="container-fluid">
+
+	<!-- BEGIN PAGE HEADER-->
+	<div class="row-fluid">
+		<div class="span12">
+			<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+			<ul class="breadcrumb">
+				<li><a href="javascript:void(0)" onclick="common_ajax.ajaxMainPanel('/platform/index/content');">主页</a> <span class="divider">/</span></li>
+				<li><a href="#">xxx</a> <span class="divider">/</span></li>
+				<li class="active">查看</li>
+			</ul>
+			<!-- END PAGE TITLE & BREADCRUMB-->
+		</div>
+	</div>
+	<!-- END PAGE HEADER-->
+
+	<!-- BEGIN PAGE CONTENT-->
+	<div class="row-fluid">
+		<div class="span12">
+			<!-- BEGIN VALIDATION STATES-->
+			<div class="widget red">
+				<div class="widget-title">
+					<h4>
+						<i class=" icon-key"></i> 查看
+					</h4>
+				</div>
+				<div class="widget-body form">	
+			
+					<form role="form" class="form-horizontal">
+						
+						<div class="control-group">
+							<label class="control-label"></label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.ids}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">商户订单号</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.out_trade_no}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">微信支付订单号</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.transaction_id}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">商家id</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.company_id}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">微信分配的公众账号ID</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.appid}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">微信支付分配的商户号</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.mch_id}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">终端设备号(门店号或收银设备ID)，PC网页或公众号内支付为"WEB"</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.device_info}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">商品或支付单简要描述</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.body}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">商品名称明细列表</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.detail}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">附加数据，在查询API和支付通知中原样返回，该字段主要用于商户携带订单的自定义数据</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.attach}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">CNY</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.fee_type}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">订单总金额，单位为分</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.total_fee}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">订单总金额，单位为分</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.total_fee_int}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">用户标识
+trade_type=JSAPI，此参数必传，用户在商户appid下的唯一标识</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.openid}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">用户是否关注公众账号，Y-关注，N-未关注，仅在公众账号类型支付有效</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.is_subscribe}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">APP和网页支付提交用户端ip，Native支付填调用微信支付API的机器IP。</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.spbill_create_ip}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">订单生成时间，格式为yyyyMMddHHmmss</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.time_start}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">订单生成时间</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.time_start_dateformat}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">订单失效时间，格式为yyyyMMddHHmmss
+注意：最短失效时间间隔必须大于5分钟</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.time_expire}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">订单失效时间</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.time_expire_dateformat}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">订单支付时间，格式为yyyyMMddHHmmss</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.time_end}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">订单支付时间</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.time_end_dateformat}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">商品标记，代金券或立减优惠功能的参数</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.goods_tag}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">接收微信支付异步通知回调地址，通知url必须为直接可访问的url，不能携带参数。</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.notify_url}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label"></label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.order_state}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label"></label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.order_state_desc}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">取值如下：JSAPI，NATIVE，APP</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.trade_type}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">交易状态
+SUCCESS—支付成功
+REFUND—转入退款
+NOTPAY—未支付
+CLOSED—已关闭
+REVOKED—已撤销（刷卡支付）
+USERPAYING--用户支付中
+PAYERROR--支付失败(其他原因，如银行返回失败)</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.trade_state}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">交易状态描述</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.trade_state_desc}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">trade_type=NATIVE，此参数必传。此id为二维码中包含的商品ID，商户自行定义。</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.product_id}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">指定支付方式</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.limit_pay}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">错误代码</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.err_code}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">错误代码描述</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.err_code_des}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">预支付交易会话标识
+微信生成的预支付回话标识，用于后续接口调用中使用，该值有效期为2小时</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.prepay_id}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">trade_type为NATIVE是有返回，可将该参数值生成二维码展示出来进行扫码支付</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.code_url}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">付款银行 银行类型，采用字符串类型的银行标识</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.bank_type}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">订单现金支付金额</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.cash_fee}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">订单现金支付金额</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.cash_fee_int}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">现金支付货币类型</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.cash_fee_type}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">代金券或立减优惠金额</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.coupon_fee}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">代金券或立减优惠金额</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.coupon_fee_int}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">代金券或立减优惠使用数量</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.coupon_count}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">代金券或立减优惠批次ID ,$n为下标，从0开始编号</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.coupon_batch_id_n}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">代金券或立减优惠ID,$n为下标，从0开始编号</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.coupon_id_n}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">单个代金券或立减优惠支付金额,$n为下标，从0开始编号</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.coupon_fee_n}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">上次更新状态的操作对象</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.last_updater}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">上次更新状态的时间</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.last_update_time}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">备注</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${fpOrder.comment}">
+							</div>
+						</div>
+						
+						
+					</form>
+			
+				</div>
+			</div>
+			<!-- END VALIDATION STATES-->
+		</div>
+	</div>
+
+	<!-- END PAGE CONTAINER-->
+</div>

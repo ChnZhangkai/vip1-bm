@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sql-statement namespace="fapai.userConsult">
+		<sql id="splitPageSelect">
+		<![CDATA[ 
+        	select uc.*,wx.nickname wx_nick, wx.openid wx_openid,wx.sex wx_sex,wx.cell_phone wx_cell_phone
+    	]]>
+	</sql>
+	<!-- 分页查询：from -->
+	<sql id="splitPageFrom">
+		<![CDATA[ 
+        	from 
+        		user_consult_detail uc left join wx_user wx on uc.idwx_user=wx.idwx_user
+			
+			where 1=1 
+				
+    	]]>
+	</sql>
+	
+</sql-statement>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sql-statement namespace="fapai.userRelation">
+	<!-- 分页公共select -->
+	<sql id="splitPageSelect">
+		<![CDATA[ 
+        	select ur.*,wx.nickname joiner_wxnick,wx.cell_phone phone,wx1.nickname spreader_wxnick,wx1.cell_phone spreader_cell_phone
+    	]]>
+	</sql>
+	<!-- 分页查询：from -->
+	<sql id="splitPageFrom">
+		<![CDATA[ 
+        	from 
+        		user_spread_relation ur left join wx_user wx on ur.joiner_userid = wx.idwx_user
+        		left join wx_user wx1 on ur.spreader_userid = wx1.idwx_user
+			
+			where 1=1 
+			<% if(!isEmpty(openid)){ %>
+				and	wx.openid = #'$openid$'#
+			<% } %>
+				
+    	]]>
+	</sql>
+	
+</sql-statement>

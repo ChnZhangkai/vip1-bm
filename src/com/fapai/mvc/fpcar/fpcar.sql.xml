@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sql-statement namespace="yhfp.fpCar">
+	
+	<!-- 分页查询：from -->
+	<sql id="splitPageFrom">
+		<![CDATA[ 
+        	from 
+        		fp_car_info
+			
+			where 1=1 
+			and is_delete = 0
+			<% if(!isEmpty(car_title)){ %>
+					and car_title like #'%$car_title$%'#
+			<% } %>
+			<% if(!isEmpty(ids)){ %>
+					and ids = #'$ids$'#
+			<% } %>
+    	]]>
+	</sql>
+	
+</sql-statement>

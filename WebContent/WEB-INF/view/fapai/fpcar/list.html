@@ -1,0 +1,241 @@
+
+<form id="splitPage" action="${cxt!}/fapai/fpcar" method="POST" class="form-horizontal">
+
+	<!-- BEGIN PAGE CONTAINER-->
+	<div class="container-fluid">
+
+		<!-- BEGIN PAGE HEADER-->
+		<div class="row-fluid">
+			<div class="span12">
+				<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+				<ul class="breadcrumb">
+					<li>
+						<a href="javascript:void(0)" onclick="common_ajax.ajaxMainPanel('/platform/index/content');">主页</a>
+						<span class="divider">/</span>
+					</li>
+					<li class="active">法拍车管理</li>
+				</ul>
+				<!-- END PAGE TITLE & BREADCRUMB-->
+			</div>
+		</div>
+		<!-- END PAGE HEADER-->
+
+		<div class="row-fluid">
+			<div class="span12">
+				<div class="widget yellow">
+					<div class="widget-title">
+						<h4>
+							<i class="icon-reorder"></i> 查询
+						</h4>
+						<span class="tools"> 
+							<a class="icon-chevron-down" href="javascript:;"></a>
+						</span>
+					</div>
+					<div class="widget-body form switch-form">
+						标题	
+						<input class="medium" type="text" name="_query.car_title" value='${escapeHtml(splitPage.queryParam["car_title"])}' maxlength="50">
+						编号
+						<input class="medium" type="text" name="_query.ids" value='${escapeHtml(splitPage.queryParam["ids"])}' maxlength="50">
+
+						<button type="button" class="btn btn-danger" onclick='common_ajax.ajaxFormMainPanel("splitPage");'>${i18nMap["admin.common.select"]}</button>
+						<button type="reset" class="btn btn-inverse">重置</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- BEGIN ADVANCED TABLE widget-->
+		<div class="row-fluid">
+			<div class="span12">
+
+				<!-- BEGIN EXAMPLE TABLE widget-->
+				<div class="widget red">
+
+					<div class="widget-title">
+						<h4>
+							<i class="icon-reorder"></i> 列表
+						</h4>
+					</div>
+
+					<div class="widget-body">
+						<span class="tools"> 
+							
+							<button type="button" class="btn btn-small btn-warning" onclick="common_ajax.ajaxMainPanel('/fapai/fpcar/toUrl?toUrl=/fapai/fpcar/add.html');">
+								<i class="icon-plus icon-white"></i>
+								添加
+							</button> 
+							
+							
+							
+					<!-- 		<button type="button" class="btn btn-small btn-danger" data-table="dataTable" data-url="/fapai/fpcar/delete" onclick="common_modals.deleteList(this)">
+								<i class="icon-remove icon-white"></i>
+								删除
+							</button>  -->
+							
+						</span>
+
+                       	<div class="space15"></div>
+                       
+						<table class="table table-striped table-bordered" id="dataTable">
+							<thead>
+								<tr>
+									<th style="width: 8px;">
+										<input type="checkbox" class="group-checkable" name="checkAll" onchange="common_common.checkFunc('dataTable', this.checked);" class="flat-grey selectall">
+									</th>
+									<th class="hidden-phone">
+										编号
+									</th>
+									<th class="hidden-phone" style="width: 150px;">
+										标题	
+									</th>
+									<th class="hidden-phone">
+										车辆属性
+									</th>
+									<th class="hidden-phone">
+										当前价 
+									</th>
+									<th class="hidden-phone">
+										法院评估价 
+									</th>
+									<th class="hidden-phone">
+										市场价
+									</th>
+									<th class="hidden-phone">
+										类型
+									</th>
+									<th class="hidden-phone">
+										品牌
+									</th>
+									<th class="hidden-phone">
+										颜色
+									</th>
+									<!-- <th class="hidden-phone">
+										税费
+									</th> -->
+									<th class="hidden-phone">
+										状态
+									</th>
+									<th class="hidden-phone" style="width: 250px;">${i18nMap["admin.common.operation"]}</th>
+								</tr>
+							</thead>
+							<tbody>
+								<% for(mode in splitPage.list){ %>
+								<tr class="odd gradeX">
+									<td>
+										<input type="checkbox" class="checkboxes" name="checkIds" value="${escapeHtml(mode['ids']!)}" class="flat-grey foocheck">
+									</td>
+									<td class="hidden-phone">
+										<span >${escapeHtml(mode["ids"]!)}</span>
+									</td>
+									<td class="hidden-phone">
+										<span >${escapeHtml(mode["car_title"]!)}</span>
+									</td>
+									<td class="hidden-phone">
+										<span >
+										<% if(mode["car_nature"]==3){%>
+									其他
+									<% }else if(mode["car_nature"]==1){%>
+									非运营
+									<%} else if(mode["car_nature"]==2){%>
+									运营
+									<%}%>
+										</span>
+									</td>
+									<td class="hidden-phone">
+										<span >${escapeHtml(mode["current_price"]!)}</span>
+									</td>
+									<td class="hidden-phone">
+										<span >${escapeHtml(mode["court_price"]!)}</span>
+									</td>
+									<td class="hidden-phone">
+										<span >${escapeHtml(mode["market_price"]!)}</span>
+									</td>
+									<td class="hidden-phone">
+										<span >${escapeHtml(mode["car_type"]!)}</span>
+									</td>
+									<td class="hidden-phone">
+										<span >${escapeHtml(mode["brand_models"]!)}</span>
+									</td>
+									<td class="hidden-phone">
+										<span >${escapeHtml(mode["color"]!)}</span>
+									</td>
+									<!-- <td class="hidden-phone">
+										<span >${escapeHtml(mode["tax"]!)}</span>
+									</td> -->
+									<td class="hidden-phone">
+									<% if(mode["shelves_status"]==0){%>
+									<span >上架</span>
+									<% }else if(mode["shelves_status"]==1){%>
+									<span >下架</span>
+									<%} %>
+										
+									</td>
+									<td class="hidden-phone">
+									<% if(mode["shelves_status"]==0){%>
+									<button type="button" class="btn btn-small btn-danger"" onclick="shelves('${mode.ids!}',1);">
+												<i class="icon-remove"></i> 
+												下架
+											</button> 
+									<% }else if(mode["shelves_status"]==1){%>
+									<button type="button" class="btn btn-small btn-success" onclick="shelves('${mode.ids!}',0);">
+												<i class="icon-ok icon-white"></i> 
+												上架
+											</button> 
+									<%} %>
+											
+											<button type="button" class="btn btn-small" onclick="common_ajax.ajaxMainPanel('/fapai/fpcar/view/${mode.ids!}');">
+												<i class="icon-eye-open"></i> 
+												${i18nMap["admin.common.see"]}
+											</button> 
+										
+											<button type="button" class="btn btn-small btn-inverse" onclick="common_ajax.ajaxMainPanel('/fapai/fpcar/edit/${escapeHtml(mode.ids!)}');">
+												<i class="icon-refresh icon-white"></i>
+												${i18nMap["admin.common.edit"]}
+											</button> 
+										
+										
+										
+											<button type="button" class="btn btn-small btn-danger" onclick="common_modals.deleteOne(this)" data-url="/fapai/fpcar/delete/${mode.ids!}">
+												<i class="icon-remove icon-white"></i>
+												${i18nMap["admin.common.delete"]}
+											</button> 
+										
+									</td>
+								</tr>
+								<% } %>
+							</tbody>
+						</table>
+
+						<div id="splitPageDiv" class="pagination">
+							<% include("/platform/common/splitPage.html", {"divId" : "main-content", "formId" : "splitPage", "splitPageDiv" : "splitPageDiv"}){} %>
+						</div>
+
+					</div>
+				</div>
+				<!-- END EXAMPLE TABLE widget-->
+
+			</div>
+		</div>
+
+		<!-- END ADVANCED TABLE widget-->
+	</div>
+
+</form>
+
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		
+		
+	});
+	function shelves(ids,type){
+		var param = {"ids" : ids, "type" : type};
+		var result = common_ajax.ajaxFunc("/fapai/fpcar/shelves", param);
+		if(result){
+			common_modals.alert("更新成功!");
+			common_ajax.ajaxFormMainPanel("splitPage");
+		}else{
+			common_modals.alert("更新失败！");
+		}
+	}
+</script>
+

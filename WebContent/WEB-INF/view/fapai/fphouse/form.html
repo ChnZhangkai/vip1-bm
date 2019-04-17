@@ -1,0 +1,271 @@
+<link rel="stylesheet" href="${cxt!}/jsfile/webuploader/webuploader.css" type="text/css">
+<script type="text/javascript" charset="utf-8" src="${cxt!}/jsfile/regionData.js"></script>
+<script type="text/javascript" charset="utf-8" src="${cxt!}/jsfile/region_init.js"></script>
+<script type="text/javascript" charset="utf-8" src="${cxt!}/jsfile/webuploader/webuploader.js"></script>
+<script type="text/javascript">
+<% if(!isEmpty(fphouse.house_province_id)){%>
+region_init("select_province","select_city","select_area",${fphouse.house_province_id},${fphouse.house_city_id},${fphouse.house_region_id});
+<% }else{%>
+region_init("select_province","select_city","select_area")
+<%} %>
+/**
+ *删除图片
+ */
+function delimg(obj,fileId) {
+	$('#isupdateImge').val("true");
+	$(obj).parent().remove();
+}
+</script>
+						<div class="control-group">
+							<label class="control-label">房屋标题:</label>
+							<div class="controls">
+								<input type="hidden" name="fphouse.is_delete" value="${fphouse.is_delete!}"/>
+								<input type="text" name="fphouse.house_title" class="span9"  value="${fphouse.house_title!}" maxlength="100" vMin="2" vType="length" onblur="platform_verify.onblurVali(this);" placeholder="2-100位任意字符">
+							<span class="help-inline"> </span>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">房屋属性:</label>
+							<div class="controls">
+								<select name="fphouse.house_nature" class="span2" class="combox" >
+									<option value=1 ${fphouse.house_nature! == 1 ? "selected='selected'":"" }>住宅</option>
+									<option value=2 ${fphouse.house_nature! == 2 ? "selected='selected'":"" }>商业</option>
+									<option value=3 ${fphouse.house_nature! == 3 ? "selected='selected'":"" }>工业</option>
+									<option value=4 ${fphouse.house_nature! == 4 ? "selected='selected'":"" }>其他</option>
+								</select>	
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">拍卖状态</label>
+							<div class="controls">
+								<select name="fphouse.auction_state" class="span2" class="combox" >
+									<option value="一拍" ${fphouse.auction_state! == "一拍" ? "selected='selected'":"" }>一拍</option>
+									<option value="二拍" ${fphouse.auction_state! == "二拍" ? "selected='selected'":"" }>二拍</option>
+									<option value="变卖" ${fphouse.auction_state! == "变卖" ? "selected='selected'":"" }>变卖</option>
+								</select>	
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">当前价:</label>
+							<div class="controls">
+								<input type="text" class="span3" name="fphouse.current_price" value="${fphouse.current_price!}" maxlength="20" vMin="1" vType="numberZ" onblur="platform_verify.onblurVali(this);" placeholder="金额(整数)">
+								<span class="help-inline"></span>
+								<span class="help-inline">元</span>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">法院评估价:</label>
+							<div class="controls">
+								<input type="text" class="span3" name="fphouse.court_price" value="${fphouse.court_price!}" maxlength="20" vMin="0" vType="numberZ" onblur="platform_verify.onblurVali(this);" placeholder="金额(整数)">
+								<span class="help-inline"></span>
+								<span class="help-inline">元</span>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">市场评估价:</label>
+							<div class="controls">
+								<input type="text" class="span3" name="fphouse.market_price" value="${fphouse.market_price!}" maxlength="20" vMin="1" vType="numberZ" onblur="platform_verify.onblurVali(this);" placeholder="金额(整数)">
+								<span class="help-inline"></span>
+								<span class="help-inline">元</span>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">图片：</label>
+							<div class="controls">
+									<!--dom结构部分-->
+									<div id="uploader-demo">
+									    <!--用来存放item-->
+									    <div id="fileList" class="uploader-list">
+									     <input type="hidden"  id="isupdateImge"  name="isupdateImge" value="false" />
+									    <% if(!isEmpty(fileList)){ for(file in fileList){ %>
+									    <div id="WU_FILE"   class="file-item thumbnail upload-state-done">
+									    <a href="javascript:void(0);" onclick="delimg(this)" style="float:right;position: absolute;top: 0;right: 2px;background: #ffffff;border-radius: 0px;line-height: 20px;width: 20px;border-radius: 10px;text-align: center;">X</a>
+									    <img class="headerImg" style="max-width:144px;max-height:108px;width:144px;height:108px" src="${piccontext!}/${file.pic_url!}">
+									    <div class="info" style="width:144px">
+									    <input type="hidden" class="fileids"  style="width:62px" name="fileids" value="${file.fileid!}" />
+									    <label >排序：</label>
+									    <input type="text" style="width:83px" name="fileindex" value="${file.pic_order!}">
+									    </div></div>
+										 <%}}%>
+									    </div>
+									   
+									</div>
+								
+							</div>
+						</div>
+						<div class="control-group">
+						<label class="control-label"></label>
+							<div class="controls">
+						 <div id="filePicker">选择图片</div>
+						 <span class="help-inline">推荐尺寸：1440*1080 </span>
+						 </div>
+						 </div>
+						<div class="control-group">
+							<label class="control-label">位置：</label>
+							<div class="controls">
+								<select id="select_province"  class="span2" name="fphouse.house_province_id" ></select>
+							
+								<select id="select_city"  class="span2" name="fphouse.house_city_id" ></select>
+							
+								<select id="select_area"  class="span2" name="fphouse.house_region_id" ></select>
+								
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">住宅小区:</label>
+							<div class="controls">
+								<input type="text" class="span8" name="fphouse.resident_area" value="${fphouse.resident_area!}" maxlength="50" vMin="1" vType="length" onblur="platform_verify.onblurVali(this);" placeholder="2-20位任意字符">
+							<span class="help-inline"> </span>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">拍卖开始时间</label>
+							<div class="controls">
+								<input type="text" class="span5" name="fphouse.auction_start_time" readonly="readonly" maxlength="20" vMin="1" vType="length" onblur="platform_verify.onblurVali(this);" placeholder="必选" value='${fphouse.auction_start_time!, dateFormat="yyyy-MM-dd HH:mm:ss"}' 
+								onClick="WdatePicker({startDate:'%y-%M-%d 10:00:00',dateFmt: 'yyyy-MM-dd HH:mm:ss', minDate:'1900-01-01',alwaysUseStartDate:true})">
+								<span class="help-inline"> </span>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">拍卖结束时间</label>
+							<div class="controls">
+								<input type="text" class="span5" name="fphouse.auction_end_time" readonly="readonly" maxlength="20" vMin="0" vType="length" onblur="platform_verify.onblurVali(this);" placeholder="选填" value='${fphouse.auction_end_time!, dateFormat="yyyy-MM-dd HH:mm:ss"}' 
+								onClick="WdatePicker({startDate:'%y-%M-%d 10:00:00',dateFmt: 'yyyy-MM-dd HH:mm:ss', minDate:'1900-01-01',alwaysUseStartDate:true})">
+								<span class="help-inline"> </span>
+							</div>
+						</div>
+						
+						
+						<div class="control-group">
+							<label class="control-label">房屋面积:</label>
+							<div class="controls">
+								<input type="text" class="span2" name="fphouse.house_area" value="${fphouse.house_area!}"  maxlength="20" vMin="1" vType="money" onblur="platform_verify.onblurVali(this);" >
+								<span class="help-inline"></span>
+								<span class="help-inline">平方米</span>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">楼层:</label>
+							<div class="controls">
+								<input type="text" class="span2" name="fphouse.flour_num" value="${fphouse.flour_num!}"  maxlength="10" vMin="0" vType="numberZ" onblur="platform_verify.onblurVali(this);">
+								<span class="help-inline"> </span>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">年代:</label>
+							<div class="controls">
+								<input type="text" class="span2" name="fphouse.year" value="${fphouse.year!}" maxlength="10" vMin="0" vType="numberZ" onblur="platform_verify.onblurVali(this);">
+								<span class="help-inline"> </span>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">租约:</label>
+							<div class="controls">
+								<input type="text" class="span2" name="fphouse.lease" value="${fphouse.lease!}">
+								<span class="help-inline"> </span>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">空置:</label>
+							<div class="controls">
+								<input type="text" class="span2" name="fphouse.vacant" value="${fphouse.vacant!}">
+								<span class="help-inline"> </span>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">拍卖热度:</label>
+							<div class="controls">
+								<input type="text" class="span2" name="fphouse.auction_heat" value="${fphouse.auction_heat!}" maxlength="2" vMin="0" vType="numberZ" onblur="platform_verify.onblurVali(this);" placeholder="1-99(整数)">
+								<span class="help-inline"></span>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">自定义标签:</label>
+							<div class="controls">
+								<input type="text" class="span2" name="fphouse.auction_dispose" value="${fphouse.auction_dispose!}" maxlength="5" vMin="0">
+								<span class="help-inline"></span>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">周边设施</label>
+							<div class="controls">
+								<input type="text" class="span9" name="fphouse.surrounding" value="${fphouse.surrounding!}" maxlength="200" vMin="0" vType="length" value="${fphouse.surrounding!}">
+								<span class="help-inline"> </span>
+							</div>
+						</div>
+						
+					
+						<div class="control-group">
+							<label class="control-label">法院公告</label>
+							<div class="controls">
+								<textarea id="dt" class="span9" cols="50" rows="30" name="fphouse.auction_announce">${fphouse.auction_announce!}</textarea><br />
+								<span class="help-inline"> </span>
+							</div>
+						</div>
+		<script type="text/javascript" charset="utf-8" src="${cxt!}/jsfile/webuploader/index.js"></script>				
+		<script type="text/javascript">
+	jQuery(document).ready(function() {
+		
+	});
+	
+	/**
+	 * 添加和编辑页面js
+	 */
+	var manager_fphouse_form = function() {
+		"use strict";
+		
+		/**
+		 *验证手机号是否存在
+		 * @param mailBox
+		 */
+		/* var valiMobile = function(mobile, userInfoIds){
+			var param = {"mobile" : mobile, "userInfoIds" : userInfoIds};
+			var result = common_ajax.ajaxFunc("/platform/user/valiMobile", param);
+			return result;
+		} */
+		
+		var dataVali = function (form, isAdd){
+			//设置图片id，提交到后台
+			 var goodsImgs = $("#fileList").find("img");
+			 if(goodsImgs==null || goodsImgs.length<1){
+				 common_modals.alert("请上传商品图片!！");
+				 return false;
+			 }
+			 if($("#fileList").find(".error").size()>0){
+				 common_modals.alert("有图片上传失败，请删除重试！");
+				 return false;
+			 }
+			if(isAdd){ // 添加
+				
+				
+			
+			}else{ // 更新
+	
+			}
+			var errorCount = platform_verify.formVali(form);
+			if(errorCount != 0){
+				common_modals.alert("有" + errorCount + "处错误，请修正！");
+		 		return false;
+			}
+			
+	        
+			common_ajax.ajaxFormMainPanel("editForm");
+		}
+	
+		return {
+			submitValiFunc: dataVali
+		};
+		
+	}();
+
+</script>

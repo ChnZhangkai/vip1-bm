@@ -1,0 +1,80 @@
+
+<!-- BEGIN PAGE CONTAINER-->
+<div class="container-fluid">
+
+	<!-- BEGIN PAGE HEADER-->
+	<div class="row-fluid">
+		<div class="span12">
+			<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+			<ul class="breadcrumb">
+				<li><a href="javascript:void(0)" onclick="common_ajax.ajaxMainPanel('/platform/index/content');">主页</a> <span class="divider">/</span></li>
+				<li><a href="#">xxx</a> <span class="divider">/</span></li>
+				<li class="active">查看</li>
+			</ul>
+			<!-- END PAGE TITLE & BREADCRUMB-->
+		</div>
+	</div>
+	<!-- END PAGE HEADER-->
+
+	<!-- BEGIN PAGE CONTENT-->
+	<div class="row-fluid">
+		<div class="span12">
+			<!-- BEGIN VALIDATION STATES-->
+			<div class="widget red">
+				<div class="widget-title">
+					<h4>
+						<i class=" icon-key"></i> 查看
+					</h4>
+				</div>
+				<div class="widget-body form">	
+			
+					<form role="form" class="form-horizontal">
+						
+						<div class="control-group">
+							<label class="control-label"></label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${userConsult.ids}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">用户的微信id</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${userConsult.idwx_user}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">收藏品类型
+0 -- 房屋
+1 -- 车辆</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${userConsult.obj_type}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">收藏品ID</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${userConsult.obj_id}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">订阅时间</label>
+							<div class="controls">
+								<input type="text" class="span8" readonly="readonly" value="${userConsult.subs_time}">
+							</div>
+						</div>
+						
+						
+					</form>
+			
+				</div>
+			</div>
+			<!-- END VALIDATION STATES-->
+		</div>
+	</div>
+
+	<!-- END PAGE CONTAINER-->
+</div>
